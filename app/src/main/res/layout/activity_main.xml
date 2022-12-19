@@ -10,13 +10,13 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="337dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="445dp"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:gravity="center"
         android:hint="Username"
-        android:background="@drawable/rounded_corner"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,12 +44,12 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="337dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="27dp"
+        android:background="@drawable/rounded_corner"
         android:ems="10"
         android:gravity="center"
         android:hint="Password"
-        android:background="@drawable/rounded_corner"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,5 +68,19 @@
         app:layout_constraintTop_toBottomOf="@+id/login"
         app:layout_constraintVertical_bias="0.928"
         app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="352dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
