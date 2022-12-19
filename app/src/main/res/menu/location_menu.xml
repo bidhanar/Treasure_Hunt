@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/current"
+        android:icon="@drawable/ic_current"
+        android:title="Current"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/location1"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 1"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location2"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 2"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location3"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 3"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location4"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 4"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location5"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 5"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location6"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 6"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location7"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 7"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location8"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 8"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/location9"
+        android:icon="@drawable/ic_baseline_location"
+        android:title="Location 9"
+        app:showAsAction="never"/>
+
+
+
+</menu>
