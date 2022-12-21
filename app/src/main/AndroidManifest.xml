@@ -20,9 +20,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".admin_home"
-            android:exported="false" />
-        <activity
             android:name=".admin"
             android:exported="false" />
         <activity
