@@ -4,19 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#043348"
     tools:context=".user_management">
 
-    <LinearLayout
-        android:layout_width="415dp"
-        android:layout_height="215dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="horizontal"
+
+    <EditText
+        android:id="@+id/add_username"
+        android:layout_width="337dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="445dp"
+        android:background="@drawable/rounded_corner"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Username"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"></LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/add_user_location"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="340dp"
+        android:backgroundTint="#cdb4db"
+        android:text="Add user"
+        android:textSize="20sp"
+        app:cornerRadius="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_password"
+        app:layout_constraintVertical_bias="0.84" />
+
+    <EditText
+        android:id="@+id/add_password"
+        android:layout_width="337dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/rounded_corner"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_username" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="312dp"
+        android:backgroundTint="#cdb4db"
+        android:gravity="center"
+        android:text="or"
+        android:textColor="#8A8080"
+        android:textSize="20sp"
+        app:cornerRadius="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_user_location"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/or_button"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="275dp"
+        android:gravity="center"
+        android:text="Add Location"
+        android:textColor="#91CF94"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
