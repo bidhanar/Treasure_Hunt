@@ -5,16 +5,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.FaceDetector;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +28,6 @@ import android.widget.Toast;
 
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -40,11 +35,9 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 
 public class admin extends AppCompatActivity {
 
@@ -67,7 +60,7 @@ public class admin extends AppCompatActivity {
 
         addteam = findViewById(R.id.addteam);
         listView = findViewById(R.id.listview_admin);
-        button = findViewById(R.id.userbutton);
+        button = findViewById(R.id.users);
         arrayList = new ArrayList<>();
 
         currentLocation = "home";
@@ -89,7 +82,15 @@ public class admin extends AppCompatActivity {
         }
 
         showTeams();
-        button.setText("No Team(s)");
+        button.setText("Users");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(admin.this , user_management.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         listView.setDivider(null);
@@ -109,7 +110,7 @@ public class admin extends AppCompatActivity {
 
     public void logout(View view){
         ParseUser.logOut();
-        Intent intent = new Intent(admin.this,admin_home.class);
+        Intent intent = new Intent(admin.this,MainActivity.class);
         startActivity(intent);
     }
 
@@ -240,7 +241,7 @@ public class admin extends AppCompatActivity {
                         Collections.sort(arrayList);
                         arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.text_items_layout, arrayList);
                         listView.setAdapter(arrayAdapter);
-                        button.setText(arrayList.size()+" Team(s)");
+//                        button.setText(arrayList.size()+" Team(s)");
                     }
                 }
                 else{
@@ -279,7 +280,7 @@ public class admin extends AppCompatActivity {
                     Collections.sort(arrayList);
                     arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.text_items_layout, arrayList);
                     listView.setAdapter(arrayAdapter);
-                    button.setText(arrayList.size()+" Team(s)");
+//                    button.setText(arrayList.size()+" Team(s)");
                 }
                 else{
                     e.printStackTrace();
@@ -337,7 +338,7 @@ public class admin extends AppCompatActivity {
                             Collections.sort(arrayList);
                             arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.text_items_layout, arrayList);
                             listView.setAdapter(arrayAdapter);
-                            button.setText(arrayList.size()+" Team(s)");
+//                            button.setText(arrayList.size()+" Team(s)");
 
                             String delete = currentLocation.equals("home") ? "teams" : "location";
                             String classs = currentLocation.equals("home") ? "teams" : currentLocation;
