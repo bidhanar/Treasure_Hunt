@@ -27,6 +27,7 @@ public class user_management extends AppCompatActivity {
 
 
     Button add_user_location;
+    Button view;
     TextView orbutton;
     EditText add_username;
     EditText add_password;
@@ -41,6 +42,7 @@ public class user_management extends AppCompatActivity {
         orbutton = findViewById(R.id.or_button);
         add_username = findViewById(R.id.add_username);
         add_password = findViewById(R.id.add_password);
+        view = findViewById(R.id.view);
 
         ColorDrawable cd = new ColorDrawable(Color.parseColor("#043348"));
 //        ColorDrawable cd = new ColorDrawable(R.drawable.header_background);
@@ -76,6 +78,15 @@ public class user_management extends AppCompatActivity {
                 else{
                     add_location(view);
                 }
+            }
+        });
+
+        //view the user page
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(user_management.this , user_location.class);
+                startActivity(intent);
             }
         });
 

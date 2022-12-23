@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TreasureHunt">
         <activity
+            android:name=".user_location"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".user_management"
             android:exported="false">
             <meta-data
