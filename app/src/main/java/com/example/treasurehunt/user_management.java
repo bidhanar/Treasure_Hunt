@@ -16,12 +16,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class user_management extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class user_management extends AppCompatActivity {
     TextView orbutton;
     EditText add_username;
     EditText add_password;
+    ArrayList<String> locations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class user_management extends AppCompatActivity {
         add_username = findViewById(R.id.add_username);
         add_password = findViewById(R.id.add_password);
         view = findViewById(R.id.view);
+        locations = new ArrayList<>();
 
         ColorDrawable cd = new ColorDrawable(Color.parseColor("#043348"));
 //        ColorDrawable cd = new ColorDrawable(R.drawable.header_background);
@@ -50,6 +57,27 @@ public class user_management extends AppCompatActivity {
 
         getSupportActionBar().setBackgroundDrawable(cd);
         getSupportActionBar().setTitle("User Management");
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("locations");
+        query.addAscendingOrder("createdAt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null){
+                    if(objects.size() > 0){
+                        for(ParseObject object : objects){
+                            locations.add(object.getString("locations"));
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"No locations added", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -114,6 +142,9 @@ public class user_management extends AppCompatActivity {
             ParseUser user = new ParseUser();
             user.setUsername(add_username.getText().toString());
             user.setPassword(add_password.getText().toString());
+            for(String location : locations){
+                user.put(location,false);
+            }
 
             user.signUpInBackground(new SignUpCallback() {
                 @Override

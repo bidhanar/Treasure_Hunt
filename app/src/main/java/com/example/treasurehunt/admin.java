@@ -95,7 +95,6 @@ public class admin extends AppCompatActivity {
                         location_added = true;
                         for(ParseObject object : objects){
                             locations.add(object.getString("locations"));
-                            Toast.makeText(getApplicationContext(),object.getString("locations"), Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
