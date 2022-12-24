@@ -44,11 +44,13 @@ public class admin extends AppCompatActivity {
     EditText addteam;
     ListView listView;
     ArrayList<String> arrayList;
+    ArrayList<String> locations;
     ArrayAdapter arrayAdapter;
     String currentLocation;
     String nextLocation;
     Button button;
     Boolean clicked;
+    Boolean location_added;
 
     long  mLastClickTime;
 
@@ -62,10 +64,12 @@ public class admin extends AppCompatActivity {
         listView = findViewById(R.id.listview_admin);
         button = findViewById(R.id.users);
         arrayList = new ArrayList<>();
+        locations = new ArrayList<>();
 
         currentLocation = "home";
         nextLocation = "location1";
         clicked = true;
+        location_added = false;
 
         ColorDrawable cd = new ColorDrawable(Color.parseColor("#043348"));
 //        ColorDrawable cd = new ColorDrawable(R.drawable.header_background);
@@ -80,6 +84,29 @@ public class admin extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.theme));
         }
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("locations");
+        query.addAscendingOrder("createdAt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null){
+                    if(objects.size() > 0){
+                        location_added = true;
+                        for(ParseObject object : objects){
+                            locations.add(object.getString("locations"));
+                            Toast.makeText(getApplicationContext(),object.getString("locations"), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"No locations added", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         showTeams();
         button.setText("Users");
@@ -118,29 +145,39 @@ public class admin extends AppCompatActivity {
 
         hideKeybaord(view);
 
-        ParseObject teams = new ParseObject("teams");
+        if(location_added){
+            ParseObject teams = new ParseObject("teams");
 
-        if(addteam.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(),"Empty Name!!",Toast.LENGTH_SHORT).show();
-            showTeams();
-            return;
-        }
-        teams.put("teams", addteam.getText().toString());
-
-        teams.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-
-                if (e == null) {
-                    Toast.makeText(getApplicationContext(), addteam.getText().toString() + " added successfully", Toast.LENGTH_SHORT).show();
-                    addteam.setText("");
-                    showTeams();
-                } else {
-                    Toast.makeText(getApplicationContext(), addteam.getText().toString() + " adding failed due to " + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                }
-
+            if(addteam.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(),"Empty Name!!",Toast.LENGTH_SHORT).show();
+                showTeams();
+                return;
             }
-        });
+            teams.put("teams", addteam.getText().toString());
+
+            for(String location : locations){
+                teams.put(location , false);
+            }
+
+            teams.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+
+                    if (e == null) {
+                        Toast.makeText(getApplicationContext(), addteam.getText().toString() + " added successfully", Toast.LENGTH_SHORT).show();
+                        addteam.setText("");
+                        showTeams();
+                    } else {
+                        Toast.makeText(getApplicationContext(), addteam.getText().toString() + " adding failed due to " + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
+        else{
+            Toast.makeText(getApplicationContext() , "No locations added!", Toast.LENGTH_SHORT).show();
+        }
+
 
 
 
